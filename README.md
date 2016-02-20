@@ -35,7 +35,7 @@ make deps build
         "finished_at": 1421029813,
         "message": "Update the Readme",
         "author": "johnsmith",
-        "author_email": "john.smith@gmail.com"
+        "author_email": "john.smith@gmail.com",
         "event": "push",
         "branch": "master",
         "commit": "436b7a6e2abaddfd35740527353e78a227ddcb2c",
@@ -46,6 +46,8 @@ make deps build
         "path": "/drone/src/github.com/drone/drone"
     },
     "vargs": {
+        "user": "uCBQgN8Ce8TBFHdEcEACMhkbEnJpxK",
+        "token": "aFeHUxHQdiBbragkajzwCNQESh4H6D"
     }
 }
 EOF
@@ -91,6 +93,8 @@ docker run -i plugins/drone-pushover <<EOF
         "path": "/drone/src/github.com/drone/drone"
     },
     "vargs": {
+        "user": "uCBQgN8Ce8TBFHdEcEACMhkbEnJpxK",
+        "token": "aFeHUxHQdiBbragkajzwCNQESh4H6D"
     }
 }
 EOF
