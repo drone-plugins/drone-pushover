@@ -4,7 +4,7 @@
 [![Coverage Status](https://aircover.co/badges/drone-plugins/drone-pushover/coverage.svg)](https://aircover.co/drone-plugins/drone-pushover)
 [![](https://badge.imagelayers.io/plugins/drone-pushover:latest.svg)](https://imagelayers.io/?images=plugins/drone-pushover:latest 'Get your own badge on imagelayers.io')
 
-Drone plugin to send build status notifications via Pushover
+Drone plugin to send build status notifications via Pushover. For the usage information and a listing of the available options please take a look at [the docs](DOCS.md).
 
 ## Binary
 
