@@ -12,11 +12,11 @@ import (
 )
 
 var (
-	buildDate string
+	buildCommit string
 )
 
 func main() {
-	fmt.Printf("Drone Pushover Plugin built at %s\n", buildDate)
+	fmt.Printf("Drone Pushover Plugin built from %s\n", buildCommit)
 
 	system := drone.System{}
 	repo := drone.Repo{}
