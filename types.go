@@ -1,5 +1,9 @@
 package main
 
+import (
+	"time"
+)
+
 var (
 	// defaultTitle is the default template for the message title
 	defaultTitle = `[{{ build.status }}] {{ repo.owner }}/{{ repo.name }} ({{ build.branch }} - {{ truncate build.commit 8 }})`
@@ -10,13 +14,13 @@ var (
 
 // Params are the parameters that the Pushover plugin can parse.
 type Params struct {
-	Token    string `json:"token"`
-	User     string `json:"user"`
-	Title    string `json:"title"`
-	Body     string `json:"body"`
-	Device   string `json:"device"`
-	Sound    string `json:"sound"`
-	Priority int    `json:"priority"`
-	Retry    int    `json:"retry"`
-	Expire   int    `json:"expire"`
+	Token    string        `json:"token"`
+	User     string        `json:"user"`
+	Title    string        `json:"title"`
+	Body     string        `json:"body"`
+	Device   string        `json:"device"`
+	Sound    string        `json:"sound"`
+	Priority int           `json:"priority"`
+	Retry    time.Duration `json:"retry"`
+	Expire   time.Duration `json:"expire"`
 }

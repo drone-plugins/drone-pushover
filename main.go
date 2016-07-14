@@ -8,7 +8,7 @@ import (
 	"github.com/drone/drone-go/drone"
 	"github.com/drone/drone-go/plugin"
 	"github.com/drone/drone-go/template"
-	"github.com/thorduri/pushover"
+	"github.com/gregdel/pushover"
 )
 
 var (
@@ -30,11 +30,11 @@ func main() {
 	plugin.MustParse()
 
 	if vargs.Retry == 0 {
-		vargs.Retry = 60
+		vargs.Retry = 60 * time.Second
 	}
 
 	if vargs.Expire == 0 {
-		vargs.Expire = 3600
+		vargs.Expire = 3600 * time.Second
 	}
 
 	if vargs.Token == "" {
@@ -47,27 +47,27 @@ func main() {
 		os.Exit(1)
 	}
 
-	client, err := pushover.NewPushover(vargs.Token, vargs.User)
+	client := pushover.New(vargs.Token)
 
-	if err != nil {
-		fmt.Println("Invaid credentials provided")
-		os.Exit(1)
-	}
-
-	_, _, err = client.Push(
+	resp, err := client.SendMessage(
 		&pushover.Message{
-			Title:     BuildTitle(system, repo, build, vargs.Title),
-			Message:   BuildBody(system, repo, build, vargs.Body),
-			Url:       fmt.Sprintf("%s/%s/%d", system.Link, repo.FullName, build.Number),
-			UrlTitle:  "Link to the Build",
-			Device:    vargs.Device,
-			Sound:     vargs.Sound,
-			Priority:  vargs.Priority,
-			Retry:     vargs.Retry,
-			Expire:    vargs.Expire,
-			Timestamp: time.Now().Unix(),
+			Title:      BuildTitle(system, repo, build, vargs.Title),
+			Message:    BuildBody(system, repo, build, vargs.Body),
+			URL:        fmt.Sprintf("%s/%s/%d", system.Link, repo.FullName, build.Number),
+			URLTitle:   "Link to the Build",
+			DeviceName: vargs.Device,
+			Sound:      vargs.Sound,
+			Priority:   vargs.Priority,
+			Retry:      vargs.Retry,
+			Expire:     vargs.Expire,
+			Timestamp:  time.Now().Unix(),
 		},
+		pushover.NewRecipient(
+			vargs.User,
+		),
 	)
+
+	fmt.Println(resp)
 
 	if err != nil {
 		fmt.Println(err)
