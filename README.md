@@ -8,98 +8,48 @@
 [![Go Doc](https://godoc.org/github.com/drone-plugins/drone-pushover?status.svg)](http://godoc.org/github.com/drone-plugins/drone-pushover)
 [![Go Report](https://goreportcard.com/badge/github.com/drone-plugins/drone-pushover)](https://goreportcard.com/report/github.com/drone-plugins/drone-pushover)
 
-Drone plugin to send build status notifications via Pushover. For the usage information and a listing of the available options please take a look at [the docs](DOCS.md).
+Drone plugin to send build status notifications via Pushover. For the usage information and a listing of the available options please take a look at [the docs](http://plugins.drone.io/drone-plugins/drone-pushover/).
 
-## Binary
+## Build
 
-Build the binary using `make`:
+Build the binary with the following command:
 
-```
-make deps build
-```
+```console
+export GOOS=linux
+export GOARCH=amd64
+export CGO_ENABLED=0
+export GO111MODULE=on
 
-### Example
-
-```sh
-./drone-pushover <<EOF
-{
-    "repo": {
-        "clone_url": "git://github.com/drone/drone",
-        "owner": "drone",
-        "name": "drone",
-        "full_name": "drone/drone"
-    },
-    "system": {
-        "link_url": "https://beta.drone.io"
-    },
-    "build": {
-        "number": 22,
-        "status": "success",
-        "started_at": 1421029603,
-        "finished_at": 1421029813,
-        "message": "Update the Readme",
-        "author": "johnsmith",
-        "author_email": "john.smith@gmail.com",
-        "event": "push",
-        "branch": "master",
-        "commit": "436b7a6e2abaddfd35740527353e78a227ddcb2c",
-        "ref": "refs/heads/master"
-    },
-    "workspace": {
-        "root": "/drone/src",
-        "path": "/drone/src/github.com/drone/drone"
-    },
-    "vargs": {
-        "user": "uCBQgN8Ce8TBFHdEcEACMhkbEnJpxK",
-        "token": "aFeHUxHQdiBbragkajzwCNQESh4H6D"
-    }
-}
-EOF
+go build -v -a -tags netgo -o release/linux/amd64/drone-pushover
 ```
 
 ## Docker
 
-Build the container using `make`:
+Build the Docker image with the following command:
 
+```console
+docker build \
+  --label org.label-schema.build-date=$(date -u +"%Y-%m-%dT%H:%M:%SZ") \
+  --label org.label-schema.vcs-ref=$(git rev-parse --short HEAD) \
+  --file docker/Dockerfile.linux.amd64 --tag plugins/pushover .
 ```
-make deps docker
-```
 
-### Example
+## Usage
 
-```sh
-docker run -i plugins/drone-pushover <<EOF
-{
-    "repo": {
-        "clone_url": "git://github.com/drone/drone",
-        "owner": "drone",
-        "name": "drone",
-        "full_name": "drone/drone"
-    },
-    "system": {
-        "link_url": "https://beta.drone.io"
-    },
-    "build": {
-        "number": 22,
-        "status": "success",
-        "started_at": 1421029603,
-        "finished_at": 1421029813,
-        "message": "Update the Readme",
-        "author": "johnsmith",
-        "author_email": "john.smith@gmail.com"
-        "event": "push",
-        "branch": "master",
-        "commit": "436b7a6e2abaddfd35740527353e78a227ddcb2c",
-        "ref": "refs/heads/master"
-    },
-    "workspace": {
-        "root": "/drone/src",
-        "path": "/drone/src/github.com/drone/drone"
-    },
-    "vargs": {
-        "user": "uCBQgN8Ce8TBFHdEcEACMhkbEnJpxK",
-        "token": "aFeHUxHQdiBbragkajzwCNQESh4H6D"
-    }
-}
-EOF
+```console
+docker run --rm \
+  -e PLUGIN_USER=uCBQgN8Ce8TBFHdEcEACMhkbEnJpxK \
+  -e PLUGIN_TOKEN=aFeHUxHQdiBbragkajzwCNQESh4H6D \
+  -e DRONE_REPO_OWNER=octocat \
+  -e DRONE_REPO_NAME=hello-world \
+  -e DRONE_COMMIT_SHA=7fd1a60b01f91b314f59955a4e4d4e80d8edf11d \
+  -e DRONE_COMMIT_BRANCH=master \
+  -e DRONE_COMMIT_AUTHOR=octocat \
+  -e DRONE_BUILD_NUMBER=1 \
+  -e DRONE_BUILD_STATUS=success \
+  -e DRONE_BUILD_LINK=http://github.com/octocat/hello-world \
+  -e DRONE_TAG=1.0.0 \
+  -v $(pwd):$(pwd) \
+  -w $(pwd) \
+  plugins/pushover
 ```

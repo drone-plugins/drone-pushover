@@ -1,10 +1,10 @@
 # escape=`
-FROM plugins/base:windows-amd64
+FROM plugins/base:windows-1809
 
 LABEL maintainer="Drone.IO Community <drone-dev@googlegroups.com>" `
   org.label-schema.name="Drone Pushover" `
   org.label-schema.vendor="Drone.IO Community" `
   org.label-schema.schema-version="1.0"
 
-ADD release\drone-pushover.exe c:\drone-pushover.exe
-ENTRYPOINT [ "c:\\drone-pushover.exe" ]
+ADD release/windows/amd64/drone-pushover.exe C:/bin/drone-pushover.exe
+ENTRYPOINT [ "C:\\bin\\drone-pushover.exe" ]

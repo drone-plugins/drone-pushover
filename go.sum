@@ -6,6 +6,7 @@ github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/drone/drone-template-lib v0.0.0-20180401170447-5748d3149f48 h1:hP2l5isqaiJVvOUM8X/1WDNeeJKlVmM8I1B9aDNT/xw=
 github.com/drone/drone-template-lib v0.0.0-20180401170447-5748d3149f48/go.mod h1:u34woe41m58Whrf21iH6z/xLOIRM3650LhWAyUc7Oik=
+github.com/drone/drone-template-lib v0.0.0-20190123100524-4019baa6c594 h1:q/E+4jG1Mn3cZRf1cnmGZ3r357+srMpF8rgiDvPiaFc=
 github.com/drone/drone-template-lib v0.0.0-20190123100524-4019baa6c594/go.mod h1:u34woe41m58Whrf21iH6z/xLOIRM3650LhWAyUc7Oik=
 github.com/gregdel/pushover v0.0.0-20180208231006-1e03358b8e7e h1:InUqbygFzzdNpgu2R2lsL5rY1NfrPuZsaOTIQfSru30=
 github.com/gregdel/pushover v0.0.0-20180208231006-1e03358b8e7e/go.mod h1:NbuXd8Iwy5dU99qFToB8mSE29qJOQNW/bphiV8CWj/k=
