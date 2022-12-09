@@ -1,13 +1,31 @@
 module github.com/drone-plugins/drone-pushover
 
+go 1.19
+
 require (
-	bou.ke/monkey v1.0.1 // indirect
+	github.com/drone/drone-template-lib v1.0.0
+	github.com/gregdel/pushover v1.1.0
+	github.com/pkg/errors v0.9.1
+	github.com/urfave/cli v1.22.10
+)
+
+require (
+	bou.ke/monkey v1.0.2 // indirect
+	github.com/Masterminds/goutils v1.1.1 // indirect
+	github.com/Masterminds/semver v1.5.0 // indirect
+	github.com/Masterminds/sprig v2.22.0+incompatible // indirect
 	github.com/aymerick/raymond v2.0.2+incompatible // indirect
-	github.com/drone/drone-template-lib v0.0.0-20190123100524-4019baa6c594
-	github.com/gregdel/pushover v0.0.0-20180208231006-1e03358b8e7e
-	github.com/pkg/errors v0.8.0
-	github.com/stretchr/testify v1.3.0 // indirect
+	github.com/cpuguy83/go-md2man/v2 v2.0.0-20190314233015-f79a8a8ca69d // indirect
+	github.com/google/uuid v1.3.0 // indirect
+	github.com/huandu/xstrings v1.4.0 // indirect
+	github.com/imdario/mergo v0.3.13 // indirect
+	github.com/mitchellh/copystructure v1.2.0 // indirect
+	github.com/mitchellh/reflectwalk v1.0.2 // indirect
+	github.com/russross/blackfriday/v2 v2.0.1 // indirect
+	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect
+	github.com/stretchr/testify v1.8.1 // indirect
 	github.com/tkuchiki/faketime v0.1.1 // indirect
-	github.com/urfave/cli v1.20.0
-	gopkg.in/yaml.v2 v2.2.2 // indirect
+	golang.org/x/crypto v0.4.0 // indirect
+	gopkg.in/yaml.v2 v2.4.0 // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
